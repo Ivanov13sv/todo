@@ -21,13 +21,18 @@ function App() {
         { id: 5, text: 'ASDAS1фывD', checked: false },
     ])
 
-    const addPosts = () => {
-        const newItem = { id: itemsList[itemsList.length - 1].id + 1, text: '555', checked: false }
+    const createPost = (newPost) => {
         setItemsList([
             ...itemsList,
-            newItem
+            newPost
         ])
-    };
+    }
+
+    const removePost = (post) => {
+        setItemsList([...itemsList.filter(item => item.id !== post.id)])
+    }
+
+
 
 
     return (
@@ -39,10 +44,10 @@ function App() {
                 <SearchPanel />
             </Container>
             <Container maxWidth="sm">
-                <PostList posts={itemsList} />
+                <PostList removePost={removePost} posts={itemsList} />
             </Container>
             <Container maxWidth='xs'>
-                <PostAddForm addPosts={addPosts} />
+                <PostAddForm create={createPost} />
             </Container>
 
         </>

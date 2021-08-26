@@ -8,23 +8,24 @@ import useStyles from '../../../styles';
 
 
 
-const PostListItemCopy = ({ text, child }) => {
+const PostListItemCopy = ({ text, child, removePost , post}) => {
 
-    const {icon__heart, post__item} = useStyles();
+    const { icon__heart, post__item } = useStyles();
 
-    
+
+
 
     return (
         <ListItem className={post__item} >
             <ListItemText primary={text} />
-            <IconButton>
+            <IconButton >
                 <StarBorderIcon />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={() => removePost(post)}>
                 <DeleteIcon />
             </IconButton>
             <IconButton className={icon__heart}>
-                <FavoriteIcon  color='secondary' />
+                <FavoriteIcon color='secondary' />
             </IconButton>
         </ListItem>
     );
