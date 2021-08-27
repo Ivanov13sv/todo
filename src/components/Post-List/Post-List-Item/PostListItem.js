@@ -1,16 +1,23 @@
 import React from 'react';
 import { ListItem, ListItemText, IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import useStyles from '../../../styles';
+import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 
 
 
 
-const PostListItemCopy = ({ text, child, removePost , post}) => {
 
-    const { icon__heart, post__item } = useStyles();
+const PostListItemCopy = ({ text, child, removePost, post, onToggleImportant, important }) => {
+
+
+    let { icon__star, post__item } = useStyles();
+
+    if (important) {
+        icon__star += ` important`;
+        post__item += ` important`;
+
+    }
 
 
 
@@ -18,14 +25,11 @@ const PostListItemCopy = ({ text, child, removePost , post}) => {
     return (
         <ListItem className={post__item} >
             <ListItemText primary={text} />
-            <IconButton >
-                <StarBorderIcon />
+            <IconButton onClick={() => onToggleImportant(post.id)} className={icon__star} >
+                <StarBorderRoundedIcon />
             </IconButton>
             <IconButton onClick={() => removePost(post)}>
-                <DeleteIcon />
-            </IconButton>
-            <IconButton className={icon__heart}>
-                <FavoriteIcon color='secondary' />
+                <DeleteForeverRoundedIcon />
             </IconButton>
         </ListItem>
     );

@@ -1,8 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-    root:{
-        transition: 'all 1s ease-out'
+    root: {
     },
     app__header: {
         marginRight: '30px'
@@ -18,24 +17,26 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: '1',
         color: 'red'
     },
-    icon__heart: {
-        opacity: '0',
+    icon__star: {
+        // opacity: '0',
         transform: 'translateX(0px)',
-    },
-    liked: {
-        opacity: '1',
-        transform: 'translateX(0px)',
+        color: '#ff9800',
+
+        '&.important': {
+            color: '#aeaeae'
+        }
     },
     post__item: {
+        transition: 'all 500ms',
         backgroundColor: '#f1f1f1',
         margin: '15px',
-        border: '1px solid #d0d0d0',
         borderRadius: '10px',
         width: 'auto',
-        "&:hover": {
-        },
-        '&__active':{
-            color: 'red'
+        border: '1px solid #f1f1f1',
+        '&.important': {
+            border: '1px solid #ffad33;',
+            boxShadow: '0 0 0.3em 0 #ff9800, inset 0 0 0.3em 0 #ff9800'
+            
         }
     },
     add__post__form: {
@@ -43,15 +44,14 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center'
     },
-    button:{
+    button: {
         "&:hover": {
             cursor: 'pointer'
         },
     },
-    count__posts:{
+    count__posts: {
         marginTop: '30px',
     }
 
 }))
-
 export default useStyles;
