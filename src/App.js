@@ -14,20 +14,35 @@ function App() {
     const { count__posts } = useStyles();
 
     const [itemsList, setItemsList] = useState([
-        { id: 1, text: 'I\'m learning Material UI', checked: false },
-        { id: 2, text: 'TestEEE', checked: false },
-        { id: 3, text: 'DDDDDD', checked: false },
-        { id: 4, text: 'ASDASD', checked: false },
-        { id: 5, text: 'ASDAS1фывD', checked: false },
+        { id: 1, text: 'I\'m learning Material UI', important: false },
+        { id: 2, text: 'TestEEE', important: false },
+        { id: 3, text: 'DDDDDD', important: false },
+        { id: 4, text: 'ASDASD', important: false },
+        { id: 5, text: 'ASDAS1фывD', important: false },
     ])
 
-    const addPosts = () => {
-        const newItem = { id: itemsList[itemsList.length - 1].id + 1, text: '555', checked: false }
+    const createPost = (newPost) => {
         setItemsList([
             ...itemsList,
-            newItem
+            newPost
         ])
-    };
+    }
+
+    const removePost = (post) => {
+        setItemsList([...itemsList.filter(item => item.id !== post.id)])
+    }
+
+    const onToggleImportant = (id) =>{
+        const index = itemsList.findIndex(item => item.id === id);
+        const old = itemsList[index];
+        const newItem = {...old, important: !old.important};
+
+        setItemsList([
+            ...itemsList.slice(0, index), newItem, ...itemsList.slice(index + 1)
+        ])
+    }
+
+
 
 
     return (
@@ -39,14 +54,14 @@ function App() {
                 <SearchPanel />
             </Container>
             <Container maxWidth="sm">
-                <PostList posts={itemsList} />
+                <PostList onToggleImportant={onToggleImportant} removePost={removePost} posts={itemsList} />
             </Container>
             <Container maxWidth='xs'>
-                <PostAddForm addPosts={addPosts} />
+                <PostAddForm create={createPost} />
             </Container>
 
         </>
     );
 }
-
+//test
 export default App;
