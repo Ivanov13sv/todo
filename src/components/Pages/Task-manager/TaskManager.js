@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { Container } from '@material-ui/core'
-import useStyles from '../../../styles';
 import TaskList from './TasksList/TasksList'
-import TaskAddForm from './TasksList/TaskAddForm/TaskAddForm'
 
 
 
 function TaskManager() {
-
-    const { count__posts } = useStyles();
 
     const [itemsList, setItemsList] = useState([
         { id: 1, text: 'I\'m learning Material UI', important: false },
@@ -18,8 +14,7 @@ function TaskManager() {
         { id: 5, text: 'ASDAS1фывD', important: false },
     ]);
 
-    const [value, setValue] = useState('123');
-
+    const [value, setValue] = useState('');
 
     const createPost = (newPost) => {
         setItemsList([
@@ -36,11 +31,6 @@ function TaskManager() {
         setItemsList([...itemsList.filter(item => item.id !== post.id)])
         setValue(post.text)
     }
-
-
-
-
-
 
     const onToggleImportant = (id) => {
         const index = itemsList.findIndex(item => item.id === id);
