@@ -9,8 +9,7 @@ import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 
 
 
-const PostListItemCopy = ({ text, child, removePost, post, onToggleImportant, important, findItem, editItem }) => {
-
+const PostListItemCopy = ({ text, removePost, post, onToggleImportant, important, findItem, editTask,setValue }) => {
 
     let { icon__star, post__item } = useStyles();
 
@@ -19,10 +18,10 @@ const PostListItemCopy = ({ text, child, removePost, post, onToggleImportant, im
         post__item += ` important`;
     }
 
-
-
-
-
+    // const edit = () =>{
+    //     setValue(text);
+    //     editTask(post)
+    // }
 
     return (
         <ListItem className={post__item} >
@@ -33,7 +32,7 @@ const PostListItemCopy = ({ text, child, removePost, post, onToggleImportant, im
             <IconButton onClick={() => removePost(post)}>
                 <DeleteForeverRoundedIcon />
             </IconButton>
-            <IconButton  onClick={() => findItem(post.id)}>
+            <IconButton  onClick={() => editTask(post)}>
                 <CreateRoundedIcon  />
             </IconButton>
         </ListItem>

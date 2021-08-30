@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Container} from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import useStyles from '../../../styles';
 import TaskList from './TasksList/TasksList'
-import TaskAddForm from './TaskAddForm/TaskAddForm'
+import TaskAddForm from './TasksList/TaskAddForm/TaskAddForm'
 
 
 
@@ -16,7 +16,9 @@ function TaskManager() {
         { id: 3, text: 'DDDDDD', important: false },
         { id: 4, text: 'ASDASD', important: false },
         { id: 5, text: 'ASDAS1фывD', important: false },
-    ])
+    ]);
+
+    const [value, setValue] = useState('123');
 
 
     const createPost = (newPost) => {
@@ -31,14 +33,12 @@ function TaskManager() {
     }
 
     const editTask = (post) => {
-        // const newArr = itemsList.filter(item => {
-        //     return item.id !== post.id;
-        // })
-        setItemsList([...itemsList.filter(item => {
-            const text = item.text;
-            return item.id !== post.id;
-        })])
+        setItemsList([...itemsList.filter(item => item.id !== post.id)])
+        setValue(post.text)
     }
+
+
+
 
 
 
@@ -56,14 +56,12 @@ function TaskManager() {
     return (
         <>
             <Container maxWidth="sm">
-                <TaskList onToggleImportant={onToggleImportant} removePost={removePost} posts={itemsList} />
+                <TaskList value={value} setValue={setValue} create={createPost} editTask={editTask} onToggleImportant={onToggleImportant} removePost={removePost} posts={itemsList} />
             </Container>
-            <Container maxWidth='xs'>
-                <TaskAddForm editTask={editTask} create={createPost} />
-            </Container>
-
         </>
     );
 }
+
+
 
 export default TaskManager;
