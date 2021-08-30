@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { Container} from '@material-ui/core'
-import useStyles from '../../../styles';
+import { Container } from '@material-ui/core'
 import TaskList from './TasksList/TasksList'
-import TaskAddForm from './TaskAddForm/TaskAddForm'
 
 
 
 function TaskManager() {
-
-    const { count__posts } = useStyles();
 
     const [itemsList, setItemsList] = useState([
         { id: 1, text: 'I\'m learning Material UI', important: false },
@@ -16,8 +12,9 @@ function TaskManager() {
         { id: 3, text: 'DDDDDD', important: false },
         { id: 4, text: 'ASDASD', important: false },
         { id: 5, text: 'ASDAS1фывD', important: false },
-    ])
+    ]);
 
+    const [value, setValue] = useState('');
 
     const createPost = (newPost) => {
         setItemsList([
@@ -31,16 +28,9 @@ function TaskManager() {
     }
 
     const editTask = (post) => {
-        // const newArr = itemsList.filter(item => {
-        //     return item.id !== post.id;
-        // })
-        setItemsList([...itemsList.filter(item => {
-            const text = item.text;
-            return item.id !== post.id;
-        })])
+        setItemsList([...itemsList.filter(item => item.id !== post.id)])
+        setValue(post.text)
     }
-
-
 
     const onToggleImportant = (id) => {
         const index = itemsList.findIndex(item => item.id === id);
@@ -56,14 +46,12 @@ function TaskManager() {
     return (
         <>
             <Container maxWidth="sm">
-                <TaskList onToggleImportant={onToggleImportant} removePost={removePost} posts={itemsList} />
+                <TaskList value={value} setValue={setValue} create={createPost} editTask={editTask} onToggleImportant={onToggleImportant} removePost={removePost} posts={itemsList} />
             </Container>
-            <Container maxWidth='xs'>
-                <TaskAddForm editTask={editTask} create={createPost} />
-            </Container>
-
         </>
     );
 }
+
+
 
 export default TaskManager;
