@@ -51,6 +51,19 @@ const useStyles = makeStyles((theme) => ({
     },
     count__posts: {
         marginTop: '30px',
+    },
+    tasks:{
+        color: '#696969',
+        fontSize: '16px',
+        fontWeight: '400',
+        margin: '50px 0 10px 0',
+        paddingRight: '16px'
+    },
+    no__tasks:{
+        color: '#696969',
+        fontSize: '20px',
+        fontWeight: '400',
+        margin: '50px 0 10px 0'
     }
 
 }))
