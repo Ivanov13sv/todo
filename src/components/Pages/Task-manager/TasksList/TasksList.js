@@ -45,14 +45,17 @@ const TasksList = ({
         />
     })
 
+    const important = posts.filter(item => item.important).length;
+    
+
     return (
         <>
             {posts.length ? (
                 < List >
                     <Typography className={tasks} align='right' variant='body1' children={
                         `${itemsArray.length === 1
-                            ? `1 task / 0 important`
-                            : `${itemsArray.length} tasks / 0 important`
+                            ? `1 task / ${important} important`
+                            : `${itemsArray.length} tasks / ${important} important`
                         }`
                     } />
                     {itemsArray}

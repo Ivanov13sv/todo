@@ -15,6 +15,11 @@ function TaskManager() {
     const [errorMessage, setErrorMessage] = useState('')
     const [currentTask, setCurrentTask] = useState(null);
 
+    const importTasks = (items) =>{
+        let count = 0;
+        items.forEach(item => item.important? count += 1: null);
+    }
+
     const addPost = (e) => {
         e.preventDefault();
         if (value.length) {
