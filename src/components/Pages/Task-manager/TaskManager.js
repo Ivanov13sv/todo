@@ -46,19 +46,21 @@ function TaskManager() {
     // Drag_n_drop functions
 
     const dragStartHandler = (e, item) => {
+
         setCurrentTask(item);
-        console.log('взял')
-        e.target.style.opacity = '0'
+        setTimeout(() => {
+            e.target.style.opacity = '0';
+
+        }, 0);
 
     };
 
     const dragEndHandler = (e) => {
         e.target.style.opacity = '1'
-        console.log('1')
+        
     };
 
     const dragOverHandler = (e) => {
-        console.log('2')
         e.preventDefault();
     };
 
@@ -75,26 +77,25 @@ function TaskManager() {
                 return c;
             })
         );
-        console.log('бросил')
-        e.target.style.opacity = '1'
+
     };
 
 
     return (
         <>
             <Container maxWidth="sm">
-                <TaskList 
-                        value={value} 
-                        setValue={setValue} 
-                        addPost={addPost} 
-                        editTask={editTask} 
-                        onToggleImportant={onToggleImportant} 
-                        removePost={removePost} 
-                        posts={itemsList}
-                        dragStartHandler={dragStartHandler}
-                        dragEndHandler={dragEndHandler}
-                        dragOverHandler={dragOverHandler}
-                        dropHandler={dropHandler} 
+                <TaskList
+                    value={value}
+                    setValue={setValue}
+                    addPost={addPost}
+                    editTask={editTask}
+                    onToggleImportant={onToggleImportant}
+                    removePost={removePost}
+                    posts={itemsList}
+                    dragStartHandler={dragStartHandler}
+                    dragEndHandler={dragEndHandler}
+                    dragOverHandler={dragOverHandler}
+                    dropHandler={dropHandler}
                 />
             </Container>
         </>
@@ -104,3 +105,6 @@ function TaskManager() {
 
 
 export default TaskManager;
+
+
+//

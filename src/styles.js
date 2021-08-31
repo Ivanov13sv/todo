@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
             
         },
         "&:hover": {
-            cursor: 'pointer',
+            cursor: 'grab',
             backgroundColor: 'rgba(230,230,230,0.9)',
         },
     },
