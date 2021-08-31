@@ -37,7 +37,11 @@ const useStyles = makeStyles((theme) => ({
             border: '1px solid #ffad33;',
             boxShadow: '0 0 0.3em 0 #ff9800, inset 0 0 0.3em 0 #ff9800'
             
-        }
+        },
+        "&:hover": {
+            cursor: 'grab',
+            backgroundColor: 'rgba(230,230,230,0.9)',
+        },
     },
     add__post__form: {
         display: 'flex',
