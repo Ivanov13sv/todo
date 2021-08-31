@@ -33,8 +33,11 @@ function TaskManager() {
     }
 
     const editTask = (post) => {
-        setItemsList([...itemsList.filter(item => item.id !== post.id)])
-        setValue(post.text)
+        if (!value.length) {
+            setItemsList([...itemsList.filter(item => item.id !== post.id)])
+            setValue(post.text)
+        }
+
     }
 
     const onToggleImportant = (id) => {
