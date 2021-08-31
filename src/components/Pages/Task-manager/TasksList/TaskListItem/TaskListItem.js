@@ -16,17 +16,18 @@ const PostListItemCopy = ({removePost, post, onToggleImportant, important, editT
     }
 
     return (
-        <ListItem className={post__item} >
-            <ListItemText primary={post.text} /> 
-            <IconButton onClick={() => onToggleImportant(post.id)} className={icon__star} >
-                <StarBorderRoundedIcon />
-            </IconButton>
-            <IconButton onClick={() => removePost(post)}>
-                <DeleteForeverRoundedIcon />
-            </IconButton>
-            <IconButton  onClick={() => editTask(post)}>
-                <CreateRoundedIcon  />
-            </IconButton>
+        <ListItem 
+            className={post__item}>
+                <ListItemText primary={post.text} /> 
+                <IconButton onClick={() => onToggleImportant(post.id)} className={icon__star} >
+                    <StarBorderRoundedIcon />
+                </IconButton>
+                <IconButton onClick={() => removePost(post)}>
+                    <DeleteForeverRoundedIcon />
+                </IconButton>
+                <IconButton  onClick={() => editTask(post)}>
+                    <CreateRoundedIcon  />
+                </IconButton>
         </ListItem>
     );
 };

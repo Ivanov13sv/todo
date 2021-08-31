@@ -4,7 +4,7 @@ import TaskListItem from './TaskListItem/TaskListItem';
 import useStyles from '../../../../styles';
 import TaskAddForm from './TaskAddForm/TaskAddForm'
 
-const TasksList = ({ posts, removePost, onToggleImportant, editTask, setValue, value, create  }) => {
+const TasksList = ({ posts, removePost, onToggleImportant, editTask, setValue, value, addPost  }) => {
 
     const { tasks, no__tasks } = useStyles();
     const itemsArray = posts.map(post => {
@@ -28,7 +28,7 @@ const TasksList = ({ posts, removePost, onToggleImportant, editTask, setValue, v
 
             )}
             <Container maxWidth='xs'>
-                <TaskAddForm value={value} setValue={setValue} create={create} editTask={editTask} />
+                <TaskAddForm value={value} setValue={setValue} addPost={addPost} editTask={editTask} />
             </Container>
         </>
     );
