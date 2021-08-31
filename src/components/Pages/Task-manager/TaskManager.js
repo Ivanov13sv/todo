@@ -12,15 +12,19 @@ function TaskManager() {
         { id: 3, text: '123', important: false }
     ]);
     const [value, setValue] = useState('');
-
+    const [errorMessage, setErrorMessage] = useState('')
     const [currentTask, setCurrentTask] = useState(null);
 
     const addPost = (e) => {
         e.preventDefault();
-        if (value) {
-            setItemsList([...itemsList, { id: Date.now(), text: value, important: false }])
-            setValue('')
+        if (value.length) {
+            setItemsList([...itemsList, { id: Date.now(), text: value, important: false }]);
+            setValue('');
+            setErrorMessage('');
+        } else {
+            setErrorMessage('empty input')
         }
+
 
     }
 
@@ -57,7 +61,7 @@ function TaskManager() {
 
     const dragEndHandler = (e) => {
         e.target.style.opacity = '1'
-        
+
     };
 
     const dragOverHandler = (e) => {
@@ -96,6 +100,7 @@ function TaskManager() {
                     dragEndHandler={dragEndHandler}
                     dragOverHandler={dragOverHandler}
                     dropHandler={dropHandler}
+                    errorMessage={errorMessage}
                 />
             </Container>
         </>

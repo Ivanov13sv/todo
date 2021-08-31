@@ -15,7 +15,8 @@ const TasksList = ({
     dragStartHandler,
     dragEndHandler,
     dragOverHandler,
-    dropHandler
+    dropHandler,
+    errorMessage
 }) => {
 
     const sortCards = (a, b) => {
@@ -61,7 +62,7 @@ const TasksList = ({
 
             )}
             <Container maxWidth='xs'>
-                <TaskAddForm value={value} setValue={setValue} addPost={addPost} editTask={editTask} />
+                <TaskAddForm errorMessage={errorMessage} value={value} setValue={setValue} addPost={addPost} editTask={editTask} />
             </Container>
         </>
     );
