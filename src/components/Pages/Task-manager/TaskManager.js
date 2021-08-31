@@ -7,11 +7,7 @@ import TaskList from './TasksList/TasksList'
 function TaskManager() {
 
     const [itemsList, setItemsList] = useState([
-        { id: 1, text: 'I\'m learning Material UI', important: false },
-        { id: 2, text: 'TestEEE', important: false },
-        { id: 3, text: 'DDDDDD', important: false },
-        { id: 4, text: 'ASDASD', important: false },
-        { id: 5, text: 'ASDAS1фывD', important: false },
+
     ]);
 
     const [value, setValue] = useState('');

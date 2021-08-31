@@ -24,7 +24,7 @@ const TasksList = ({ posts, removePost, onToggleImportant, editTask, setValue, v
                     {itemsArray}
                 </List>
             ) : (
-                <Typography className={no__tasks} variant='body1' children={`No tasks`} align='center' />
+                <Typography className={no__tasks} variant='body1' children={`No tasks =(`} align='center' />
 
             )}
             <Container maxWidth='xs'>
