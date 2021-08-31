@@ -4,11 +4,44 @@ import TaskListItem from './TaskListItem/TaskListItem';
 import useStyles from '../../../../styles';
 import TaskAddForm from './TaskAddForm/TaskAddForm'
 
-const TasksList = ({ posts, removePost, onToggleImportant, editTask, setValue, value, addPost  }) => {
+const TasksList = ({
+    posts,
+    removePost,
+    onToggleImportant,
+    editTask,
+    setValue,
+    value,
+    addPost,
+    dragStartHandler,
+    dragEndHandler,
+    dragOverHandler,
+    dropHandler
+}) => {
+
+    const sortCards = (a, b) => {
+        if (a.id > b.id) {
+          return 1;
+        } else {
+          return -1;
+        }
+      };
 
     const { tasks, no__tasks } = useStyles();
-    const itemsArray = posts.map(post => {
-        return <TaskListItem setValue={setValue} editTask={editTask} onToggleImportant={onToggleImportant} important={post.important} removePost={removePost} key={post.id} text={post.text} post={post} />
+    const itemsArray = posts.sort(sortCards).map(post => {
+        return <TaskListItem
+            setValue={setValue}
+            editTask={editTask}
+            onToggleImportant={onToggleImportant}
+            important={post.important}
+            removePost={removePost}
+            key={post.id}
+            text={post.text}
+            post={post}
+            dragStartHandler={dragStartHandler}
+            dragEndHandler={dragEndHandler}
+            dragOverHandler={dragOverHandler}
+            dropHandler={dropHandler}
+        />
     })
 
     return (

@@ -46,17 +46,20 @@ function TaskManager() {
     // Drag_n_drop functions
 
     const dragStartHandler = (e, item) => {
-        console.log("drag", item);
         setCurrentTask(item);
+        console.log('взял')
+        e.target.style.opacity = '0'
+
     };
 
     const dragEndHandler = (e) => {
-        e.target.style.background = "none";
+        e.target.style.opacity = '1'
+        console.log('1')
     };
 
     const dragOverHandler = (e) => {
+        console.log('2')
         e.preventDefault();
-        e.target.style.background = "lightgray";
     };
 
     const dropHandler = (e, item) => {
@@ -64,15 +67,16 @@ function TaskManager() {
         setItemsList(
             itemsList.map((c) => {
                 if (c.id === item.id) {
-                    return { ...c, index: currentTask.index };
+                    return { ...c, id: currentTask.id };
                 }
                 if (c.id === currentTask.id) {
-                    return { ...c, index: item.index };
+                    return { ...c, id: item.id };
                 }
                 return c;
             })
         );
-        e.target.style.background = "none";
+        console.log('бросил')
+        e.target.style.opacity = '1'
     };
 
 
@@ -80,12 +84,17 @@ function TaskManager() {
         <>
             <Container maxWidth="sm">
                 <TaskList 
-                value={value} 
-                setValue={setValue} 
-                addPost={addPost} 
-                editTask={editTask} 
-                onToggleImportant={onToggleImportant} 
-                removePost={removePost} posts={itemsList} 
+                        value={value} 
+                        setValue={setValue} 
+                        addPost={addPost} 
+                        editTask={editTask} 
+                        onToggleImportant={onToggleImportant} 
+                        removePost={removePost} 
+                        posts={itemsList}
+                        dragStartHandler={dragStartHandler}
+                        dragEndHandler={dragEndHandler}
+                        dragOverHandler={dragOverHandler}
+                        dropHandler={dropHandler} 
                 />
             </Container>
         </>

@@ -6,7 +6,17 @@ import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 
 
-const PostListItemCopy = ({removePost, post, onToggleImportant, important, editTask }) => {
+const PostListItemCopy = ({
+    removePost, 
+    post, 
+    onToggleImportant, 
+    important, 
+    editTask,
+    dragStartHandler,
+    dragEndHandler,
+    dragOverHandler,
+    dropHandler
+ }) => {
 
     let { icon__star, post__item } = useStyles();
 
@@ -16,8 +26,16 @@ const PostListItemCopy = ({removePost, post, onToggleImportant, important, editT
     }
 
     return (
-        <ListItem 
-            className={post__item}>
+        <ListItem
+            // button 
+            className={post__item}
+            draggable
+            onDragStart={(e) => dragStartHandler(e, post)}
+            onDragLeave={(e) => dragEndHandler(e)}
+            onDragEnd={(e) => dragEndHandler(e)}
+            onDragOver={(e) => dragOverHandler(e)}
+            onDrop={(e) => dropHandler(e, post)}
+            >
                 <ListItemText primary={post.text} /> 
                 <IconButton onClick={() => onToggleImportant(post.id)} className={icon__star} >
                     <StarBorderRoundedIcon />
