@@ -7,16 +7,21 @@ import TaskList from './TasksList/TasksList'
 function TaskManager() {
 
     const [itemsList, setItemsList] = useState([
-
+        { id: 1, text: 'React', important: false },
+        { id: 2, text: 'Re123123act', important: false },
+        { id: 3, text: '123', important: false }
     ]);
-
     const [value, setValue] = useState('');
 
-    const createPost = (newPost) => {
-        setItemsList([
-            ...itemsList,
-            newPost
-        ])
+    const [currentTask, setCurrentTask] = useState(null);
+
+    const addPost = (e) => {
+        e.preventDefault();
+        if (value) {
+            setItemsList([...itemsList, { id: Date.now(), text: value, important: false }])
+            setValue('')
+        }
+
     }
 
     const removePost = (post) => {
@@ -38,11 +43,60 @@ function TaskManager() {
         ])
     }
 
+    // Drag_n_drop functions
+
+    const dragStartHandler = (e, item) => {
+
+        setCurrentTask(item);
+        setTimeout(() => {
+            e.target.style.opacity = '0';
+
+        }, 0);
+
+    };
+
+    const dragEndHandler = (e) => {
+        e.target.style.opacity = '1'
+        
+    };
+
+    const dragOverHandler = (e) => {
+        e.preventDefault();
+    };
+
+    const dropHandler = (e, item) => {
+        e.preventDefault();
+        setItemsList(
+            itemsList.map((c) => {
+                if (c.id === item.id) {
+                    return { ...c, id: currentTask.id };
+                }
+                if (c.id === currentTask.id) {
+                    return { ...c, id: item.id };
+                }
+                return c;
+            })
+        );
+
+    };
+
 
     return (
         <>
             <Container maxWidth="sm">
-                <TaskList value={value} setValue={setValue} create={createPost} editTask={editTask} onToggleImportant={onToggleImportant} removePost={removePost} posts={itemsList} />
+                <TaskList
+                    value={value}
+                    setValue={setValue}
+                    addPost={addPost}
+                    editTask={editTask}
+                    onToggleImportant={onToggleImportant}
+                    removePost={removePost}
+                    posts={itemsList}
+                    dragStartHandler={dragStartHandler}
+                    dragEndHandler={dragEndHandler}
+                    dragOverHandler={dragOverHandler}
+                    dropHandler={dropHandler}
+                />
             </Container>
         </>
     );
@@ -51,3 +105,6 @@ function TaskManager() {
 
 
 export default TaskManager;
+
+
+//
