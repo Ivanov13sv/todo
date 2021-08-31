@@ -1,7 +1,15 @@
 import { makeStyles } from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles((theme) => ({
+
     root: {
+
+        "& .MuiFormHelperText-root": {
+            color: '#ff5050',
+            position: 'absolute',
+            top: '50px'
+        }
     },
     app__header: {
         marginRight: '30px'
@@ -36,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
         '&.important': {
             border: '1px solid #ffad33;',
             boxShadow: '0 0 0.3em 0 #ff9800, inset 0 0 0.3em 0 #ff9800'
-            
+
         },
         "&:hover": {
             cursor: 'grab',
@@ -56,19 +64,20 @@ const useStyles = makeStyles((theme) => ({
     count__posts: {
         marginTop: '30px',
     },
-    tasks:{
+    tasks: {
         color: '#696969',
         fontSize: '16px',
         fontWeight: '400',
         margin: '50px 0 10px 0',
         paddingRight: '16px'
     },
-    no__tasks:{
+    no__tasks: {
         color: '#696969',
         fontSize: '20px',
         fontWeight: '400',
         margin: '50px 0 10px 0'
-    }
+    },
+
 
 }))
 export default useStyles;
