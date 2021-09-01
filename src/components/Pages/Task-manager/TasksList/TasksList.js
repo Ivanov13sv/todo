@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { List, Typography, Container } from '@material-ui/core';
 import TaskListItem from './TaskListItem/TaskListItem';
 import useStyles from '../../../../styles';
 import TaskAddForm from './TaskAddForm/TaskAddForm'
+
 
 const TasksList = ({
     posts,
@@ -21,11 +22,11 @@ const TasksList = ({
 
     const sortCards = (a, b) => {
         if (a.id > b.id) {
-          return 1;
+            return 1;
         } else {
-          return -1;
+            return -1;
         }
-      };
+    };
 
     const { tasks, no__tasks } = useStyles();
     const itemsArray = posts.sort(sortCards).map(post => {
@@ -46,7 +47,9 @@ const TasksList = ({
     })
 
     const important = posts.filter(item => item.important).length;
-    
+
+
+
 
     return (
         <>

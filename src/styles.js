@@ -4,12 +4,17 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
 
     root: {
-
         "& .MuiFormHelperText-root": {
             color: '#ff5050',
             position: 'absolute',
             top: '50px'
-        }
+        },
+        // 
+
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
     },
     app__header: {
         marginRight: '30px'
