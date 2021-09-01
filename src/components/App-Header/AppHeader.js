@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, AppBar, Toolbar, SvgIcon , makeStyles } from '@material-ui/core';
+import { Typography, AppBar, Toolbar, SvgIcon  } from '@material-ui/core';
 import useStyles from '../../styles';
 import ArtTrackIcon from '@material-ui/icons/ArtTrack';
 

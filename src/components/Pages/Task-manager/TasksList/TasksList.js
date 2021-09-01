@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { List, Typography, Container } from '@material-ui/core';
 import TaskListItem from './TaskListItem/TaskListItem';
 import useStyles from '../../../../styles';
