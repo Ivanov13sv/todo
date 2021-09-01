@@ -4,6 +4,7 @@ import TaskListItem from './TaskListItem/TaskListItem';
 import useStyles from '../../../../styles';
 import TaskAddForm from './TaskAddForm/TaskAddForm'
 
+
 const TasksList = ({
     posts,
     removePost,
@@ -16,16 +17,18 @@ const TasksList = ({
     dragEndHandler,
     dragOverHandler,
     dropHandler,
-    errorMessage
+    errorMessage,
+    open,
+    setOpen
 }) => {
 
     const sortCards = (a, b) => {
         if (a.id > b.id) {
-          return 1;
+            return 1;
         } else {
-          return -1;
+            return -1;
         }
-      };
+    };
 
     const { tasks, no__tasks } = useStyles();
     const itemsArray = posts.sort(sortCards).map(post => {
@@ -46,7 +49,9 @@ const TasksList = ({
     })
 
     const important = posts.filter(item => item.important).length;
-    
+
+
+
 
     return (
         <>
@@ -65,7 +70,15 @@ const TasksList = ({
 
             )}
             <Container maxWidth='xs'>
-                <TaskAddForm errorMessage={errorMessage} value={value} setValue={setValue} addPost={addPost} editTask={editTask} />
+                <TaskAddForm 
+                    errorMessage={errorMessage} 
+                    value={value} 
+                    setValue={setValue} 
+                    addPost={addPost} 
+                    editTask={editTask}
+                    open={open}
+                    setOpen={setOpen}
+                />
             </Container>
         </>
     );

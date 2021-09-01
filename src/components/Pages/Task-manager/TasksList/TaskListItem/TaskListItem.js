@@ -15,7 +15,7 @@ const PostListItemCopy = ({
     dragStartHandler,
     dragEndHandler,
     dragOverHandler,
-    dropHandler
+    dropHandler,
 }) => {
 
     let { icon__star, post__item } = useStyles();

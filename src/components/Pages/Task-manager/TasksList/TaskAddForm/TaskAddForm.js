@@ -1,16 +1,34 @@
+import React from 'react'
 import { TextField, Fab, Tooltip, Zoom } from '@material-ui/core';
 import useStyles from '../../../../../styles';
 import AddIcon from '@material-ui/icons/Add';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 
 
 
-const PostAddForm = ({ addPost, value, setValue, errorMessage }) => {
+const PostAddForm = ({ addPost, value, setValue, errorMessage,open,setOpen, ...props }) => {
+    function Alert(props) {
+        return <MuiAlert elevation={6} variant="filled"  {...props}></MuiAlert>;
+    }
+
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
     const { add__post__form, root } = useStyles();
     return (
 
-        <form onSubmit={(e) => addPost(e)} autoComplete='off' className={add__post__form}>
+        <form
+            onSubmit={(e) => addPost(e)}
+            autoComplete='off'
+            className={add__post__form}
+        >
 
             <TextField
                 onChange={(e) => setValue(e.target.value)}
@@ -27,6 +45,11 @@ const PostAddForm = ({ addPost, value, setValue, errorMessage }) => {
                     <AddIcon />
                 </Fab>
             </Tooltip>
+            <Snackbar TransitionComponent={Zoom} open={open} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    Success!
+                </Alert>
+            </Snackbar>
         </form>
     );
 };
