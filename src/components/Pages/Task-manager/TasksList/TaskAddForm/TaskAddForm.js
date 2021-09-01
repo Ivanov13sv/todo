@@ -8,20 +8,11 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 
 
-const PostAddForm = ({ addPost, value, setValue, errorMessage, ...props }) => {
+const PostAddForm = ({ addPost, value, setValue, errorMessage,open,setOpen, ...props }) => {
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled"  {...props}></MuiAlert>;
     }
 
-
-
-
-    const [open, setOpen] = useState(false);
-
-    const handleClick = (e) => {
-        setOpen(true);
-        addPost(e)
-    };
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -34,7 +25,7 @@ const PostAddForm = ({ addPost, value, setValue, errorMessage, ...props }) => {
     return (
 
         <form
-            onSubmit={(e) => handleClick(e)}
+            onSubmit={(e) => addPost(e)}
             autoComplete='off'
             className={add__post__form}
         >

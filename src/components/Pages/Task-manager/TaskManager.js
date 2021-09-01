@@ -14,11 +14,8 @@ function TaskManager() {
     const [value, setValue] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
     const [currentTask, setCurrentTask] = useState(null);
+    const [open, setOpen] = useState(false);
 
-    const importTasks = (items) =>{
-        let count = 0;
-        items.forEach(item => item.important? count += 1: null);
-    }
 
     const addPost = (e) => {
         e.preventDefault();
@@ -26,6 +23,7 @@ function TaskManager() {
             setItemsList([...itemsList, { id: Date.now(), text: value, important: false }]);
             setValue('');
             setErrorMessage('');
+            setOpen(true);
         } else {
             setErrorMessage('empty input')
         }
@@ -109,6 +107,8 @@ function TaskManager() {
                     dragOverHandler={dragOverHandler}
                     dropHandler={dropHandler}
                     errorMessage={errorMessage}
+                    open={open}
+                    setOpen={setOpen}
                 />
             </Container>
         </>
