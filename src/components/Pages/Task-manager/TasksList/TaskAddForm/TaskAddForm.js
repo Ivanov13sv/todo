@@ -8,7 +8,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 
 
-const PostAddForm = ({ addPost, value, setValue, errorMessage,open,setOpen, ...props }) => {
+const PostAddForm = ({ addPost, value, setValue, errorMessage, successSnackbar,setSuccessSnackbar,errorSnackbar,setErrorSnackbar, ...props }) => {
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled"  {...props}></MuiAlert>;
     }
@@ -18,7 +18,8 @@ const PostAddForm = ({ addPost, value, setValue, errorMessage,open,setOpen, ...p
         if (reason === 'clickaway') {
             return;
         }
-        setOpen(false);
+        setSuccessSnackbar(false);
+        setErrorSnackbar(false);
     };
 
     const { add__post__form, root } = useStyles();
@@ -45,9 +46,14 @@ const PostAddForm = ({ addPost, value, setValue, errorMessage,open,setOpen, ...p
                     <AddIcon />
                 </Fab>
             </Tooltip>
-            <Snackbar TransitionComponent={Zoom} open={open} autoHideDuration={3000} onClose={handleClose}>
+            <Snackbar TransitionComponent={Zoom} open={successSnackbar} autoHideDuration={3000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success">
                     Success!
+                </Alert>
+            </Snackbar>
+            <Snackbar TransitionComponent={Zoom} open={errorSnackbar} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error">
+                    Already editing !
                 </Alert>
             </Snackbar>
         </form>

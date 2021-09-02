@@ -18,8 +18,10 @@ const TasksList = ({
     dragOverHandler,
     dropHandler,
     errorMessage,
-    open,
-    setOpen
+    successSnackbar,
+    setSuccessSnackbar,
+    errorSnackbar,
+    setErrorSnackbar
 }) => {
 
     const sortCards = (a, b) => {
@@ -76,8 +78,10 @@ const TasksList = ({
                     setValue={setValue} 
                     addPost={addPost} 
                     editTask={editTask}
-                    open={open}
-                    setOpen={setOpen}
+                    successSnackbar={successSnackbar}
+                    setSuccessSnackbar={setSuccessSnackbar}
+                    errorSnackbar={errorSnackbar}
+                    setErrorSnackbar={setErrorSnackbar}
                 />
             </Container>
         </>

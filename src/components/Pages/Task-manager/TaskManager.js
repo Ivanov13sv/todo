@@ -14,7 +14,9 @@ function TaskManager() {
     const [value, setValue] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
     const [currentTask, setCurrentTask] = useState(null);
-    const [open, setOpen] = useState(false);
+    const [successSnackbar, setSuccessSnackbar] = useState(false);
+    const [errorSnackbar, setErrorSnackbar] = useState(false);
+
 
 
     const addPost = (e) => {
@@ -23,10 +25,11 @@ function TaskManager() {
             setItemsList([...itemsList, { id: Date.now(), text: value, important: false }]);
             setValue('');
             setErrorMessage('');
-            setOpen(true);
+            setSuccessSnackbar(true);
         } else {
-            setErrorMessage('empty input')
+            setErrorMessage('empty input');
         }
+
 
 
     }
@@ -36,9 +39,12 @@ function TaskManager() {
     }
 
     const editTask = (post) => {
+
         if (!value.length) {
             setItemsList([...itemsList.filter(item => item.id !== post.id)])
             setValue(post.text)
+        } else if (value.length) {
+            setErrorSnackbar(true)
         }
 
     }
@@ -60,7 +66,6 @@ function TaskManager() {
         setCurrentTask(item);
         setTimeout(() => {
             e.target.style.opacity = '0';
-
         }, 0);
 
     };
@@ -107,8 +112,10 @@ function TaskManager() {
                     dragOverHandler={dragOverHandler}
                     dropHandler={dropHandler}
                     errorMessage={errorMessage}
-                    open={open}
-                    setOpen={setOpen}
+                    successSnackbar={successSnackbar}
+                    setSuccessSnackbar={setSuccessSnackbar}
+                    errorSnackbar={errorSnackbar}
+                    setErrorSnackbar={setErrorSnackbar}
                 />
             </Container>
         </>
