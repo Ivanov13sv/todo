@@ -9,6 +9,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 
 const PostAddForm = ({ addPost, value, setValue, errorMessage,snackbars, ...props }) => {
+    
     const {successSnackbar, setSuccessSnackbar,errorSnackbar,setErrorSnackbar } = snackbars;
     
     function Alert(props) {
