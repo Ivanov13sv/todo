@@ -18,7 +18,6 @@ function TaskManager() {
     const [errorSnackbar, setErrorSnackbar] = useState(false);
 
 
-
     const addPost = (e) => {
         e.preventDefault();
         if (value.length) {
@@ -26,6 +25,7 @@ function TaskManager() {
             setValue('');
             setErrorMessage('');
             setSuccessSnackbar(true);
+            setErrorSnackbar(false);
         } else {
             setErrorMessage('empty input');
         }
@@ -96,6 +96,22 @@ function TaskManager() {
     };
 
 
+    const taskManagerProps = {
+        snackbars: {
+            successSnackbar,
+            setSuccessSnackbar,
+            errorSnackbar,
+            setErrorSnackbar
+        },
+        dragNdropFns: {
+            dragStartHandler,
+            dragEndHandler,
+            dragOverHandler,
+            dropHandler
+        }
+    }
+
+
     return (
         <>
             <Container maxWidth="sm">
@@ -107,15 +123,9 @@ function TaskManager() {
                     onToggleImportant={onToggleImportant}
                     removePost={removePost}
                     posts={itemsList}
-                    dragStartHandler={dragStartHandler}
-                    dragEndHandler={dragEndHandler}
-                    dragOverHandler={dragOverHandler}
-                    dropHandler={dropHandler}
+                    dragNdropFns={taskManagerProps.dragNdropFns}
                     errorMessage={errorMessage}
-                    successSnackbar={successSnackbar}
-                    setSuccessSnackbar={setSuccessSnackbar}
-                    errorSnackbar={errorSnackbar}
-                    setErrorSnackbar={setErrorSnackbar}
+                    snackbars={taskManagerProps.snackbars}
                 />
             </Container>
         </>

@@ -5,24 +5,23 @@ import useStyles from '../../../../styles';
 import TaskAddForm from './TaskAddForm/TaskAddForm'
 
 
-const TasksList = ({
-    posts,
-    removePost,
-    onToggleImportant,
-    editTask,
-    setValue,
-    value,
-    addPost,
-    dragStartHandler,
-    dragEndHandler,
-    dragOverHandler,
-    dropHandler,
-    errorMessage,
-    successSnackbar,
-    setSuccessSnackbar,
-    errorSnackbar,
-    setErrorSnackbar
-}) => {
+const TasksList = ({ ...props }) => {
+
+    const {
+        setValue,
+        editTask,
+        onToggleImportant,
+        removePost,
+        dragStartHandler,
+        dragEndHandler,
+        dragOverHandler,
+        dropHandler,
+        posts,
+        errorMessage,
+        value,
+        addPost,
+        snackbars
+    } = props
 
     const sortCards = (a, b) => {
         if (a.id > b.id) {
@@ -48,6 +47,7 @@ const TasksList = ({
             dragOverHandler={dragOverHandler}
             dropHandler={dropHandler}
         />
+
     })
 
     const important = posts.filter(item => item.important).length;
@@ -72,16 +72,13 @@ const TasksList = ({
 
             )}
             <Container maxWidth='xs'>
-                <TaskAddForm 
-                    errorMessage={errorMessage} 
-                    value={value} 
-                    setValue={setValue} 
-                    addPost={addPost} 
+                <TaskAddForm
+                    errorMessage={errorMessage}
+                    value={value}
+                    setValue={setValue}
+                    addPost={addPost}
                     editTask={editTask}
-                    successSnackbar={successSnackbar}
-                    setSuccessSnackbar={setSuccessSnackbar}
-                    errorSnackbar={errorSnackbar}
-                    setErrorSnackbar={setErrorSnackbar}
+                    snackbars={snackbars}
                 />
             </Container>
         </>
