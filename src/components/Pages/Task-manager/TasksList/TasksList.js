@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { List, Typography, Container } from '@material-ui/core';
 import TaskListItem from './TaskListItem/TaskListItem';
 import useStyles from '../../../../styles';
@@ -8,11 +8,14 @@ import TaskAddForm from './TaskAddForm/TaskAddForm'
 const TasksList = () => {
 
 
-    const [itemsList, setItemsList] = useState([
-        { id: 1, text: 'React', important: false },
-        { id: 2, text: 'Re123123act', important: false },
-        { id: 3, text: '123', important: false }
-    ]);
+    const [itemsList, setItemsList] = useState(() => {
+        const savedTodos = localStorage.getItem('todos');
+        return savedTodos ? JSON.parse(savedTodos) : [
+            { id: 1, text: 'React', important: false },
+            { id: 2, text: 'Re123123act', important: false },
+            { id: 3, text: '123', important: false }
+        ]
+    })
     const [value, setValue] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
     const [currentTask, setCurrentTask] = useState(null);
@@ -20,22 +23,13 @@ const TasksList = () => {
     const [errorSnackbar, setErrorSnackbar] = useState(false);
 
 
-    // useEffect
+    // local_storage
 
-    // useEffect(() => {
-    //     const temp = localStorage.getItem('todos')
-    //     const loadedTodos = JSON.parse(temp)
-    //     console.log(loadedTodos)
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(itemsList))
+    }, [itemsList])
 
-    //     if (loadedTodos) {
-    //         setItemsList(temp)
-    //     }
-    // }, [])
 
-    // useEffect(() => {
-    //     const temp = JSON.stringify(itemsList);
-    //     localStorage.setItem('todos', temp);
-    // }, [itemsList])
 
 
     const addPost = (e) => {
@@ -46,6 +40,8 @@ const TasksList = () => {
             setErrorMessage('');
             setSuccessSnackbar(true);
             setErrorSnackbar(false);
+
+
         } else {
             setErrorMessage('empty input');
         }
